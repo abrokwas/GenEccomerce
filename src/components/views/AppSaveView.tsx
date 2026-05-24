@@ -13,7 +13,7 @@ import { IS_Android } from "../../constants/constants";
 
 interface AppSaveViewProps {
   children: ReactNode;
-  style: ViewStyle;
+  style?: ViewStyle;
 }
 
 
@@ -41,4 +41,3 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
-
