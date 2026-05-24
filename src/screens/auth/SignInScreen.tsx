@@ -25,7 +25,7 @@ const SignInScreen = () => {
         secureTextEntry
       />
       <AppText style={styles.appName}>Smart E-Commerce</AppText>
-      <AppButton title="Login" />
+      <AppButton title="Login" onPress={() => navigation.navigate("MainAppBottomTabs")}/>
       <AppButton
         title="Sign Up"
         style={styles.registerButton}
