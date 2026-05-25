@@ -1,6 +1,5 @@
 import {
-  Platform,
-  StatusBar,
+ StatusBar,
   StyleSheet,
   View,
   ViewStyle,
@@ -41,4 +40,3 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
-
