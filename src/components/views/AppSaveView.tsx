@@ -1,5 +1,6 @@
 import {
- StatusBar,
+  Platform,
+  StatusBar,
   StyleSheet,
   View,
   ViewStyle,
