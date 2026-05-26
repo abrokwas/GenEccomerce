@@ -4,6 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import MainAppStack from './src/navigation/MainAppStack';
 import { useFonts } from 'expo-font';
+import { Provider } from 'react-redux';
+import { store } from './src/store/store';
 
 export default function App() {
 
@@ -18,10 +20,12 @@ export default function App() {
 
   return (
     <>
+    <Provider store={store}>
     <NavigationContainer>
       <FlashMessage position={"top"}/>
       <MainAppStack />
     </NavigationContainer>
+    </Provider>
     </>
   );
 }
