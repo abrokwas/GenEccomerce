@@ -1,5 +1,5 @@
 import { StyleSheet, Text, Image } from "react-native";
-import React, { useState } from "react";
+import React from "react";
 import AppSaveView from "../../components/views/AppSaveView";
 import { sharedPaddingHorizontal } from "../../styles/sharedStyles";
 import { IMAGES } from "../../constants/images-paths";

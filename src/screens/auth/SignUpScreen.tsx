@@ -1,10 +1,9 @@
-import { StyleSheet, Text, Image, Alert } from "react-native";
-import React, { useState } from "react";
+import { StyleSheet, Image, Alert } from "react-native";
+import React from "react";
 import AppSaveView from "../../components/views/AppSaveView";
 import { sharedPaddingHorizontal } from "../../styles/sharedStyles";
 import { IMAGES } from "../../constants/images-paths";
 import { s, vs } from "react-native-size-matters";
-import AppTextInput from "../../components/inputs/AppTextInput";
 import AppText from "../../components/texts/AppText";
 import AppButton from "../../components/buttons/AppButton";
 import { AppColors } from "../../styles/colors";
