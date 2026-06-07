@@ -7,7 +7,10 @@ import {getAuth} from 'firebase/auth';
 // import {...} from 'firebase/functions';
 // import {...} from 'firebase/storage';
 
+// Initialize Firebase
+
 // MaskedInitialize Firebase
+
 
 const firebaseConfig = {
   apiKey: 'api-key',
@@ -19,6 +22,7 @@ const firebaseConfig = {
   appId: 'app-id',
   measurementId: 'G-measurement-id',
 };
+
 
 const app = initializeApp(firebaseConfig);
 

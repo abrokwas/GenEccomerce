@@ -1,5 +1,5 @@
 import { StyleSheet, Text, Image } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import AppSaveView from "../../components/views/AppSaveView";
 import { sharedPaddingHorizontal } from "../../styles/sharedStyles";
 import { IMAGES } from "../../constants/images-paths";
@@ -17,6 +17,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../config/firebase";
+import { showMessage } from "react-native-flash-message";
 
 // 2- Make schema
 const schema = yup
@@ -43,7 +44,7 @@ const SignInScreen = () => {
 
   const navigation = useNavigation();
 
-  const onLoginPress = async(data:FormData) => {
+  const onLoginPress = async (data: FormData) => {
 
     console.log(data);
 
@@ -53,17 +54,26 @@ const SignInScreen = () => {
         data.email,
         data.password
       )
-      navigation.navigate("MainAppBottomTabs");
+      navigation.navigate("MainAppBottomTabs")
       console.log(userCredential);
       
-    } catch (error) {
-      
+    } catch (error: any) {
+      let errorMessage = ""
+      console.log(error.code)
+      if (error.code === "auth/user-not-found") {
+        errorMessage = "User not found"
+      } else if ( error.code === "auth/invalid-credential" ) {
+        errorMessage = "Wrong email or password"
+      } else {
+        errorMessage = "An error occurred during sign-in"
+      }
+
+      showMessage({
+        type: "danger",
+        message: errorMessage
+      })
     }
-    
-    
-
-
-  }
+  };
 
   return (
     <AppSaveView style={styles.container}>

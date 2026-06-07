@@ -1,9 +1,10 @@
-import { StyleSheet, Image, Alert } from "react-native";
-import React from "react";
+import { StyleSheet, Text, Image, Alert } from "react-native";
+import React, { useState } from "react";
 import AppSaveView from "../../components/views/AppSaveView";
 import { sharedPaddingHorizontal } from "../../styles/sharedStyles";
 import { IMAGES } from "../../constants/images-paths";
 import { s, vs } from "react-native-size-matters";
+import AppTextInput from "../../components/inputs/AppTextInput";
 import AppText from "../../components/texts/AppText";
 import AppButton from "../../components/buttons/AppButton";
 import { AppColors } from "../../styles/colors";
@@ -14,6 +15,9 @@ import AppTextInputController from "../../components/inputs/AppTextInputControll
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../config/firebase";
+import { showMessage } from "react-native-flash-message";
 
 const schema = yup
   .object({
@@ -38,9 +42,37 @@ const SignUpScreen = () => {
 
   const navigation = useNavigation();
 
-  const onSignUpPress = () => {
-    Alert.alert("User Created");
-    navigation.navigate("MainAppBottomTabs");
+  const onSignUpPress = async (data: FormData) => {
+
+    try {
+
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      )
+
+      Alert.alert("User Created");
+      navigation.navigate("MainAppBottomTabs");
+      return userCredential.user
+    } catch (error: any) {
+        let errorMessage = ""
+
+        if (error.code === "auth/email-already-in-use") {
+          errorMessage = "This email is already in use! you can't use this email";
+        } else if (error.code === "auth/invalid-email") {
+          errorMessage = "The email address is invalid.";
+        } else if (error.code === "auth/weak-password") {
+          errorMessage = "The password is too weak.";
+        } else {
+          errorMessage = "An error occurred during sign-up.";
+        }
+
+        showMessage({
+          type: "danger",
+          message: errorMessage
+        })
+    }
   };
 
   return (
