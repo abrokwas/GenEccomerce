@@ -10,10 +10,11 @@ import {getFirestore} from 'firebase/firestore';
 // Initialize Firebase
 
 
+
 // MaskedInitialize Firebase
 
 
-/*
+
 const firebaseConfig = {
   apiKey: 'api-key',
   authDomain: 'project-id.firebaseapp.com',
@@ -24,7 +25,7 @@ const firebaseConfig = {
   appId: 'app-id',
   measurementId: 'G-measurement-id',
 };
-*/
+
 
 
 
