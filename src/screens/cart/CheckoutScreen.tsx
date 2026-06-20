@@ -70,7 +70,10 @@ const CheckoutScreen = () => {
       }
 
       const userOrderRef = collection(doc(db, "users", userData.uid), "orders");
-      const orderRef = await addDoc(userOrderRef, orderBody)
+      await addDoc(userOrderRef, orderBody)
+
+      const ordersRef = collection(db, "orders")
+      await addDoc(ordersRef, orderBody)
 
       showMessage({type:"success", message: "Order Places Successfully"})
       navigation.goBack()

@@ -60,7 +60,12 @@ const SignInScreen = () => {
       )
       navigation.navigate("MainAppBottomTabs")
       console.log(JSON.stringify(userCredential, null, 3));
-      dispatch(setUserData(userCredential.user))
+
+      const userDataObj = {
+        uid: userCredential.user.uid
+      }
+
+      dispatch(setUserData(userDataObj))
     } catch (error: any) {
       let errorMessage = ""
       console.log(error.code)
