@@ -18,6 +18,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../config/firebase";
 import { showMessage } from "react-native-flash-message";
+import { useDispatch } from "react-redux";
+import { setUserData } from "../../store/reducers/userSlice";
 
 const schema = yup
   .object({
@@ -41,6 +43,7 @@ const SignUpScreen = () => {
   });
 
   const navigation = useNavigation();
+  const dispatch = useDispatch()
 
   const onSignUpPress = async (data: FormData) => {
 
@@ -54,7 +57,9 @@ const SignUpScreen = () => {
 
       Alert.alert("User Created");
       navigation.navigate("MainAppBottomTabs");
-      return userCredential.user
+
+      dispatch(setUserData(userCredential.user))
+      
     } catch (error: any) {
         let errorMessage = ""
 

@@ -14,6 +14,8 @@ import AppTextInputController from "../../components/inputs/AppTextInputControll
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import {yupResolver} from "@hookform/resolvers/yup"
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
 const schema = yup.object({
   fullName: yup
@@ -39,6 +41,12 @@ const CheckoutScreen = () => {
   const { control, handleSubmit } = useForm({
     resolver: yupResolver(schema)
   });
+
+  const {userData} = useSelector((state: RootState) => state.userSlice)
+
+  console.log('==================userData====================================================================');
+  console.log(JSON.stringify(userData, null, 3));
+  console.log('===============================================================================================');
 
   const saveOrder = (formData: FormData) => {
     Alert.alert(JSON.stringify(formData))
