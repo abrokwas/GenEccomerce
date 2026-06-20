@@ -4,6 +4,7 @@ import { sharedPaddingHorizontal } from "../../styles/sharedStyles";
 import OrderItem from "../../components/cart/OrderItem";
 import AppSafeView from "../../components/views/AppSaveView";
 import { fetchUserOrders } from "../../config/dataServices";
+import { getDateFromFireStoreTimeStampObject } from "../../helpers/dateTimeHelper";
 
 const MyOrdersScreen = () => {
   // Dummy data for rendering the component
@@ -53,7 +54,7 @@ const MyOrdersScreen = () => {
 
           return (
           <OrderItem
-            date={item.date}
+            date={getDateFromFireStoreTimeStampObject(item.createdAt)}
             totalAmount={item.totalProductsPricesSum}
             totalPrice={item.totalPrice}
             style={{ marginBottom: 10 }}

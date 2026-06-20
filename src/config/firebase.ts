@@ -14,6 +14,7 @@ import {getFirestore} from 'firebase/firestore';
 // MaskedInitialize Firebase
 
 
+
 const firebaseConfig = {
   apiKey: 'api-key',
   authDomain: 'project-id.firebaseapp.com',
